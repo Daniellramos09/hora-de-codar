@@ -144,6 +144,7 @@ else{
     alert("tente novamente!")
 }
 
+//TESTE
 
 
 var num6 = Number(prompt("Digite seu ano de nascimento: "))
