@@ -1,159 +1,118 @@
-var x = 10;
-var y = 20;
-var z = 30;
 
-if (x > y) {
-    console.log("x é maior")
-    console.log("y é menor")
+var valorA = Number(prompt("Digite o valor de x: "));
+var valorB = Number(prompt("Digite o valor de y: "));
+var valorC = Number(prompt("Digite o valor de z: "));
 
+if (valorA > valorB) {
+    alert("x é maior");
+    alert("y é menor");
+} else {
+    alert("y é maior");
+    alert("x é menor");
 }
+
+
+if (valorA > 0) {
+   alert("positivo");
+} else if (valorA < 0) {
+   alert("negativo");
+} else {
+    alert("zero");
+}
+
+
+if (valorA > valorB && valorA > valorC) {
+    alert(valorA);
+} else if (valorB > valorC) {
+    alert(valorB);
+} else {
+    alert(valorC);
+}
+
+
+console.log("---");
+if (valorA < valorB && valorA < valorC) {
+    alert(valorB + valorC);
+} 
+else if (valorB < valorA && valorB < valorC) {
+    alert(valorA + valorC);
+} 
 else {
-    console.log("y é maior")
-     console.log("x é menor")
+   alert(valorA + valorB);
 }
 
 
-if (x % 2 == 0) {
-    console.log("positivo")
-}
-else {
-    console.log("negativo")
-}
+var nota1 = Number(prompt("Digite numero 1: "));
+var nota2 = Number(prompt("Digite numero 2: "));
+var nota3 = Number(prompt("Digite numero 3: "));
+var nota4 = Number(prompt("Digite numero 4: "));
+var nota5 = Number(prompt("Digite numero 5: "));
+var nota6 = Number(prompt("Digite numero 6: "));
 
-if (x > y && x > z) {
-    console.log(x)
-}
-else if (y > x && y > z) {
-    console.log(y)
-}
-else {
-    console.log(z)
-}
-
-console.log("---")
-if (x > y && x > z && y > x) {
-    console.log(x + y)
-}
-else if (y > x && y > z && z > x) {
-    console.log(y + z)
-}
-else {
-    console.log(z + x)
-}
+alert("Valores informados: " + nota1 + "-" + nota2 + "-" + nota3 + "-" + nota4 + "-" + nota5 + "-" + nota6);
+alert("A média é: " + (nota1 + nota2 + nota3 + nota4 + nota5 + nota6) / 6);
 
 
-var num1 = Number(prompt("Digite numero 1: "))
-var num2 = Number(prompt("Digite numero 2: "))
-var num3 = Number(prompt("Digite numero 3: "))
-var num4 = Number(prompt("Digite numero 4: "))
-var num5 = Number(prompt("Digite numero 5: "))
-var num6 = Number(prompt("Digite numero 6: "))
+var listaNumeros = [];
 
-alert(num1 + "-" + num2  + "-" + num3  + "-" + num4  + "-" + num5  + "-" + num6)
+listaNumeros.push(Number(prompt("Digite numero 1 para a lista: ")));
+listaNumeros.push(Number(prompt("Digite numero 2 para a lista: ")));
+listaNumeros.push(Number(prompt("Digite numero 3 para a lista: ")));
+listaNumeros.push(Number(prompt("Digite numero 4 para a lista: ")));
 
-alert("A média é: " + (num1 + num2 + num3 + num4 + num5 + num6) / 6 )
+var primeiroElemento = listaNumeros[0];
+var ultimoElemento = listaNumeros[listaNumeros.length - 1];
+var maiorValor = Math.max(...listaNumeros);
+var menorValor = Math.min(...listaNumeros);
 
-
-//2.6. Leia 4 valores diferentes e informe apenas o primeiro, o último e o maior deles.
-
- var numeros = [];
-
- numeros.push(prompt("Digite numero 1: "))
- numeros.push(prompt("Digite numero 2: "))
- numeros.push(prompt("Digite numero 3: "))
- numeros.push(prompt("Digite numero 4: "))
-
- var primeiro = [0];
- var ultimo = [numeros.length - 1];
- // var maior = Math.max(...numeros)
- var menor = Math.min(...numeros)
-
- alert(primeiro)
- alert(ultimo)
- alert(maior)
- alert(menor)
- 
+alert("Primeiro da lista: " + primeiroElemento);
+alert("Último da lista: " + ultimoElemento);
+alert("Maior da lista: " + maiorValor);
+alert("Menor da lista: " + menorValor);
 
 
+var item01 = Number(prompt("Digite o 1º número para soma restrita: "));
+var item02 = Number(prompt("Digite o 2º número para soma restrita: "));
+var item03 = Number(prompt("Digite o 3º número para soma restrita: "));
+var item04 = Number(prompt("Digite o 4º número para soma restrita: "));
+var item05 = Number(prompt("Digite o 5º número para soma restrita: "));
+var item06 = Number(prompt("Digite o 6º número para soma restrita: "));
+
+var somaRestrita = 0;
+if (item01 < 72) { somaRestrita += item01; }
+if (item02 < 72) { somaRestrita += item02; }
+if (item03 < 72) { somaRestrita += item03; }
+if (item04 < 72) { somaRestrita += item04; }
+if (item05 < 72) { somaRestrita += item05; }
+if (item06 < 72) { somaRestrita += item06; }
+
+alert("Valores informados: " + item01 + "-" + item02 + "-" + item03 + "-" + item04 + "-" + item05 + "-" + item06);
+alert("A soma dos menores que 72 é: " + somaRestrita);
 
 
+var dado1 = Number(prompt("Digite nota 1 (entre 0 e 10): "));
+var dado2 = Number(prompt("Digite nota 2 (entre 0 e 10): "));
+var dado3 = Number(prompt("Digite nota 3 (entre 0 e 10): "));
+var dado4 = Number(prompt("Digite nota 4 (entre 0 e 10): "));
 
-
-var num1 = Number(prompt("Digite algum numero: "))
-var num2 = Number(prompt("Digite algum numero: "))
-
-var num3 = Number(prompt("Digite algum numero: "))
-
-var num4 = Number(prompt("Digite algum numero: "))
-
-var num5 = Number(prompt("Digite algum numero: "))
-
-var num6 = Number(prompt("Digite algum numero: "))
-
-var sum = 0
-if(num1 < 72){
-    sum += num1
-}
-if( num2 < 72){
-    sum += num2
-}
-if( num3 < 72){
-    sum += num3
-}
-if( num4 < 72){
-    sum += num4
-}
-if( num5 < 72){
-    sum += num5
-}
-if(num6 < 72) {
-    sum += num6
-}
-
-alert(sum)
-
-
-
-var num1 = Number(prompt("Digite algum numero: "))
-var num2 = Number(prompt("Digite algum numero: "))
-
-var num3 = Number(prompt("Digite algum numero: "))
-
-var num4 = Number(prompt("Digite algum numero: "))
-
-sum = 0;
-if( num1 > 0 && num1 < 10){
-    sum += num1
-}
-if( num2 > 0 && num2 < 10){
-    sum += num2
-}
-if( num3 > 0 && num3 < 10){
-    sum += num3
-}
-if( num4 > 0 && num4 < 10){
-    sum += num4
-}
-
-var media = sum / 4
-
-if (media > 5){
-    alert("Você passou no teste! ")
-}
-else{
-    alert("tente novamente!")
-}
-
-//TESTE
-
-
-var num6 = Number(prompt("Digite seu ano de nascimento: "))
-if(2026 - num6 >= 16){
-    var idade = 2026 - num6 
-    alert("Você está apto a exercer o direito do voto -" + idade)
-}
-else{
+if ((dado1 > 0 && dado1 < 10) && (dado2 > 0 && dado2 < 10) && (dado3 > 0 && dado3 < 10) && (dado4 > 0 && dado4 < 10)) {
+    var mediaValidada = (dado1 + dado2 + dado3 + dado4) / 4;
     
-    alert("Você não está apto a votar -" + idade)
+    if (mediaValidada > 5) {
+        alert("Você passou no teste! Média: " + mediaValidada);
+    } else {
+        alert("Tente novamente! Média: " + mediaValidada);
+    }
+} else {
+    alert("Um ou mais números digitados estão fora do limite permitido (0 a 10).");
 }
 
+
+var anoNasc = Number(prompt("Digite seu ano de nascimento: "));
+var idadeCalculada = 2026 - anoNasc;
+
+if (idadeCalculada >= 16) {
+    alert("Você está apto a exercer o direito do voto - " + idadeCalculada + " anos.");
+} else {
+    alert("Você não está apto a votar - " + idadeCalculada + " anos.");
+}
