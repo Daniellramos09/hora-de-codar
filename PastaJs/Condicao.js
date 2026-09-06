@@ -42,7 +42,7 @@ else {
 }
 
 
-/*var num1 = Number(prompt("Digite numero 1: "))
+var num1 = Number(prompt("Digite numero 1: "))
 var num2 = Number(prompt("Digite numero 2: "))
 var num3 = Number(prompt("Digite numero 3: "))
 var num4 = Number(prompt("Digite numero 4: "))
@@ -51,12 +51,12 @@ var num6 = Number(prompt("Digite numero 6: "))
 
 alert(num1 + "-" + num2  + "-" + num3  + "-" + num4  + "-" + num5  + "-" + num6)
 
-alert("A média é: " + (num1 + num2 + num3 + num4 + num5 + num6) / 6 )*/
+alert("A média é: " + (num1 + num2 + num3 + num4 + num5 + num6) / 6 )
 
 
 //2.6. Leia 4 valores diferentes e informe apenas o primeiro, o último e o maior deles.
 
-/* var numeros = [];
+ var numeros = [];
 
  numeros.push(prompt("Digite numero 1: "))
  numeros.push(prompt("Digite numero 2: "))
@@ -72,14 +72,14 @@ alert("A média é: " + (num1 + num2 + num3 + num4 + num5 + num6) / 6 )*/
  alert(ultimo)
  alert(maior)
  alert(menor)
- */
+ 
 
 
 
 
 
 
-/*var num1 = Number(prompt("Digite algum numero: "))
+var num1 = Number(prompt("Digite algum numero: "))
 var num2 = Number(prompt("Digite algum numero: "))
 
 var num3 = Number(prompt("Digite algum numero: "))
@@ -110,7 +110,7 @@ if(num6 < 72) {
     sum += num6
 }
 
-alert(sum)*/
+alert(sum)
 
 
 
