@@ -71,31 +71,31 @@ Nesta etapa, você vai ensinar o programa a tomar decisões com base em regras.
 - Trate entradas inválidas (por exemplo, texto no lugar de número).
 - No exercício do voto, mostre a idade calculada.
 
----
+	---
 
-## 3) Laços de Repetição
+	## 3) Laços de Repetição
 
-Nesta etapa, você vai repetir tarefas de forma inteligente com `for` e `while`.
+	Nesta etapa, você vai repetir tarefas de forma inteligente com `for` e `while`.
 
-3.1. Crie uma bomba-relógio com contagem regressiva de 30 até 0 e, ao final, escreva `EXPLOSÃO`.
+	3.1. Crie uma bomba-relógio com contagem regressiva de 30 até 0 e, ao final, escreva `EXPLOSÃO`.	
 
-3.2. Leia dois valores. Enquanto o segundo valor for menor ou igual a zero, peça novamente esse mesmo valor. Ao final, mostre a divisão do primeiro pelo segundo.
+		3.2. Leia dois valores. Enquanto o segundo valor for menor ou igual a zero, peça novamente esse mesmo valor. Ao final, mostre a divisão do primeiro pelo segundo.
 
-3.3. Calcule e exiba a média aritmética dos números inteiros de 15 a 100 (inclusive).
+	3.3. Calcule e exiba a média aritmética dos números inteiros de 15 a 100 (inclusive).
 
-3.4. Leia dois inteiros (sendo o primeiro menor que o segundo) e calcule a média desses números e de todos os inteiros entre eles.
+		3.4. Leia dois inteiros (sendo o primeiro menor que o segundo) e calcule a média desses números e de todos os inteiros entre eles.
 
-3.5. Leia 2 notas de um aluno, calcule a média final e considere aprovação com nota 9,5. Em seguida, pergunte: `Calcular a média de outro aluno? (S/N)`. Se a resposta for `S`, repita; caso contrário, encerre e mostre a quantidade de alunos aprovados.
+	3.5. Leia 2 notas de um aluno, calcule a média final e considere aprovação com nota 9,5. Em seguida, pergunte: `Calcular a média de outro aluno? (S/N)`. Se a resposta for `S`, repita; caso contrário, encerre e mostre a quantidade de alunos aprovados.
 
-3.6. Leia 6 notas válidas (de 0 a 10), calcule e exiba a média simples.
+	3.6. Leia 6 notas válidas (de 0 a 10), calcule e exiba a média simples.
 
-3.7. Leia um valor `N` (N > 0) e imprima todos os inteiros de 1 até `N`.
+	3.7. Leia um valor `N` (N > 0) e imprima todos os inteiros de 1 até `N`.
 
-3.8. Imprima os 10 primeiros números inteiros maiores que 100.
+	3.8. Imprima os 10 primeiros números inteiros maiores que 100.
 
-3.9. Leia 10 valores e informe quantos estão no intervalo de 24 a 42 (inclusive) e quantos estão fora.
+	3.9. Leia 10 valores e informe quantos estão no intervalo de 24 a 42 (inclusive) e quantos estão fora.
 
-### Desafios extras (opcionais)
+### Desafios extras (opcionais)	
 
 - Permita ao usuário escolher o valor inicial da contagem regressiva.
 - Ao calcular médias, exiba também soma total e quantidade de valores.
