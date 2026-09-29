@@ -1,0 +1,49 @@
+
+section{
+    background-color: #ffffff;
+    width: 350px;
+    padding: 20px;
+    border-radius: 10%;
+    text-align: center;
+
+    
+
+}
+
+
+section a{
+    display: block;
+
+    margin-bottom: 12px;
+    text-decoration: none;  
+}
+main{
+    background-color: black;
+}
+
+body{
+    background-color: black;
+    display: flex; /*alinhar o que está dentro*/
+    justify-content: center; /*alinhar a section no centro*/
+    align-items: center; /*alinhas items no centro*/
+    height: 100vh;  
+    background: linear-gradient(135deg, #74b9ff, #d63031);
+}
+
+button{
+    width: 100%;
+    padding: 30px;
+    border-radius: 25px;
+    border: none;
+    
+}
+
+button:hover{
+    background-color: rgb(167, 167, 218);
+    cursor: pointer;
+    transition: 0.3s;
+    
+}
+
+
+
