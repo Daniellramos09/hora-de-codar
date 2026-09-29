@@ -1,0 +1,140 @@
+<html>
+
+<head>
+
+	<script>
+
+		var nomeHotel = "Palantir"
+
+		alert("Bem vindo ao " + nomeHotel)
+
+		var usuario = prompt(alert("Digite seu nome"))
+
+		var senha = prompt(alert("Digite sua senha"))
+
+
+
+
+
+
+		var sum = 0;
+		while (senha != 2678) {
+
+			var senha = prompt(alert("Digite sua senha"))
+
+
+			alert("senha incorreta")
+
+			sum++
+
+			if (sum === 3) {
+				alert("Bloqueado")
+			}
+		}
+
+		alert("Bem-vindo ao Hotel {Hotel}, {Nome}. É um imenso prazer ter você por aqui")
+
+
+
+
+
+
+
+
+		function inicio() {
+			var escolha = parseInt(prompt('Selecione uma opção 1.) Reserva de Quartos 2.) Cadastro de Hóspedes 3.) Abastecimento de Carros 4.) Sair'));
+
+			if (escolha === 1) {
+				reserva_quartos();
+			} else if (escolha === 2) {
+				cadastro_hospedes();
+			} else if (escolha === 3) {
+				abastecer_carros();
+			} else if (escolha === 4) {
+				sair();
+			} else {
+				erro();
+			}
+		}
+
+
+
+		let quartos = [];
+
+		function reserva_quartos() {
+			alert('HOTEL {NOME DO HOTEL} - RESERVA DE QUARTOS');
+
+
+			var valorDiaria = Number(prompt("Valor que será pago:"))
+
+			var qtt = Number(prompt("Quantidade de Dias de hospedagem: "))
+
+			if (valorDiaria <= 0 && qtt <= 0) {
+				alert("Valores invalidos")
+				inicio();
+			}
+
+			let nome = prompt("Whats your name?")
+
+			let quartoescolhido = prompt(alert("Qual quarto deseja escolher?"))
+
+			if( quartoescolhido > 1 && quartoescolhido <=20){
+				quartos.push(quartoescolhido)
+			}
+
+
+			inicio();
+		}
+
+		function cadastro_hospedes() {
+			alert('HOTEL {NOME DO HOTEL} - CADASTRO DE HÓSPEDES');
+			inicio();
+		}
+
+		function eventos() {
+
+		}
+
+		function eventos() {
+
+		}
+
+		function ar_condicionado() {
+
+		}
+
+		function abastecer_carros() {
+			alert('HOTEL {NOME DO HOTEL} - ABASTECER');
+			inicio();
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 4');
+			inicio();
+		}
+
+		function relatorios_operacionais() {
+
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				alert("Muito Obrigado e até logo, " + nomeHotel + "!")
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+
+
+
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
