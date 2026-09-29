@@ -63,7 +63,7 @@ Menu mínimo:
 ## 3.3 Regras de implementação
 
 - O hotel possui **20 quartos**, inicialmente livres.
-- Utilize funções/métodos separados por responsabilidade.
+- Utilize funções/métodos  por separadosresponsabilidade.
 - Não usar variáveis globais sem justificativa.
 - Padronizar mensagens e formatação monetária.
 - Estruturas em memória são suficientes (sem banco).
