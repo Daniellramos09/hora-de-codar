@@ -109,7 +109,6 @@ Em caso de informação inválida escreva na tela “Valor Inválido” e volte 
 8. Confirmar reserva (`S/N`).
 9. Se confirmada:
    - ocupar quarto
-   - registrar reserva em memória (hóspede, quarto, diárias, total)
 10. Exibir mapa de quartos em grade 4x5 com status:
     - `L` = livre
     - `O` = ocupado

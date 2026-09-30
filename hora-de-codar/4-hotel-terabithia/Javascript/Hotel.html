@@ -4,44 +4,41 @@
 
 	<script>
 
-		var nomeHotel = "Palantir"
+		var nomeHotel = "Palantir";
 
-		alert("Bem vindo ao " + nomeHotel)
+		alert("Bem vindo ao " + nomeHotel);
 
-		var usuario = prompt(alert("Digite seu nome"))
+		var usuario = prompt("Digite seu nome");
 
-		var senha = prompt(alert("Digite sua senha"))
+		for (let i = 1; i <= 3; i++) {
 
+			var senha = prompt("Digite sua senha");
 
+			if (senha == 2678) {
 
+				alert(
+					"Bem-vindo ao Hotel " + nomeHotel + ", " + usuario +
+					". É um imenso prazer ter você por aqui!"
+				);
 
+				break;
 
+			} else {
 
-		var sum = 0;
-		while (senha != 2678) {
+				alert("Senha errada. Tentativa: " + i);
 
-			var senha = prompt(alert("Digite sua senha"))
+				if (i == 3) {
 
+					alert("Acesso bloqueado.");
 
-			alert("senha incorreta")
-
-			sum++
-
-			if (sum === 3) {
-				alert("Bloqueado")
+					window.close();
+				}
 			}
 		}
 
-		alert("Bem-vindo ao Hotel {Hotel}, {Nome}. É um imenso prazer ter você por aqui")
-
-
-
-
-
-
-
-
 		function inicio() {
+			alert("Bem-vindo ao Hotel {Hotel}, {Nome}. É um imenso prazer ter você por aqui")
+
 			var escolha = parseInt(prompt('Selecione uma opção 1.) Reserva de Quartos 2.) Cadastro de Hóspedes 3.) Abastecimento de Carros 4.) Sair'));
 
 			if (escolha === 1) {
@@ -57,34 +54,305 @@
 			}
 		}
 
-
-
 		let quartos = [];
 
+		for (let i = 0; i < 20; i++	) {
+			quartos.push("L");
+		}
+
 		function reserva_quartos() {
-			alert('HOTEL {NOME DO HOTEL} - RESERVA DE QUARTOS');
+
+			alert("HOTEL " + nomeHotel + " - RESERVA DE QUARTOS");
+
+			// 1. Valor da diária
+			let valorDiaria = Number(
+				prompt("Informe o valor da diária:")
+			);
+
+			// 2. Quantidade de diárias
+			let qtt = Number(
+				prompt("Informe a quantidade de diárias (1-30):")
+			);
 
 
-			var valorDiaria = Number(prompt("Valor que será pago:"))
+			// ===============================
+			// VALIDAÇÃO
+			// ===============================
 
-			var qtt = Number(prompt("Quantidade de Dias de hospedagem: "))
+			if (valorDiaria <= 0 || qtt < 1 || qtt > 30) {
 
-			if (valorDiaria <= 0 && qtt <= 0) {
-				alert("Valores invalidos")
+				alert("Valor inválido, " + usuario);
+
 				inicio();
+				return;
 			}
 
-			let nome = prompt("Whats your name?")
 
-			let quartoescolhido = prompt(alert("Qual quarto deseja escolher?"))
+			// ===============================
+			// HÓSPEDE
+			// ===============================
 
-			if( quartoescolhido > 1 && quartoescolhido <=20){
-				quartos.push(quartoescolhido)
+			let nomeHospede = prompt(
+				"Informe o nome completo do hóspede:"
+			);
+
+
+			// ===============================
+			// TIPO DE QUARTO
+			// ===============================
+
+			let tipoQuarto = prompt(
+				"Tipo de quarto:\n" +
+				"S - Standard\n" +
+				"E - Executivo\n" +
+				"L - Luxo"
+			).toUpperCase();
+
+
+			let fator;
+
+
+			if (tipoQuarto === "S") {
+
+				fator = 1.00;
+
+			} else if (tipoQuarto === "E") {
+
+				fator = 1.35;
+
+			} else if (tipoQuarto === "L") {
+
+				fator = 1.65;
+
+			} else {
+
+				alert("Tipo de quarto inválido.");
+				inicio();
+				return;
+			}
+
+
+			// ===============================
+			// ESCOLHA DO QUARTO
+			// ===============================
+
+			let quartoEscolhido = Number(
+				prompt("Escolha um quarto de 1 a 20:")
+			);
+
+
+			// Validação do número do quarto
+
+			if (quartoEscolhido < 1 || quartoEscolhido > 20) {
+
+				alert("Escolha um quarto entre 1 e 20.");
+
+				inicio();
+				return;
+			}
+
+
+			// ===============================
+			// VERIFICAR OCUPAÇÃO
+			// ===============================
+
+			// O quarto 1 corresponde à posição 0 do vetor
+			let posicao = quartoEscolhido - 1;
+
+
+			if (quartos[posicao] === "O") {
+
+				alert("Quarto já está ocupado.");
+
+				mostrar_quartos_livres();
+
+				inicio();
+				return;
+			}
+
+
+			// ===============================
+			// CÁLCULO
+			// ===============================
+
+			let subtotal = valorDiaria * qtt * fator;
+
+			let taxaServico = subtotal * 0.10;
+
+			let total = subtotal + taxaServico;
+
+
+			// ===============================
+			// RESUMO
+			// ===============================
+
+			alert(
+				"Resumo da reserva\n\n" +
+				"Hóspede: " + nomeHospede + "\n" +
+				"Quarto: " + quartoEscolhido + "\n" +
+				"Tipo: " + tipoQuarto + "\n" +
+				"Subtotal: R$ " + subtotal.toFixed(2) + "\n" +
+				"Taxa de serviço: R$ " + taxaServico.toFixed(2) + "\n" +
+				"Total: R$ " + total.toFixed(2)
+			);
+
+
+			// ===============================
+			// CONFIRMAÇÃO
+			// ===============================
+
+			let confirmar = prompt(
+				nomeHospede + ", confirma a reserva? (S/N)"
+			).toUpperCase();
+
+
+			if (confirmar === "S") {
+
+				// Marca o quarto como ocupado
+				quartos[posicao] = "O";
+
+				alert("Reserva efetuada com sucesso.");
+
+				mostrar_mapa_quartos();
+
+			} else {
+
+				alert("Reserva não efetuada.");
 			}
 
 
 			inicio();
 		}
+
+
+		// ===============================
+		// MOSTRAR QUARTOS LIVRES
+		// ===============================
+
+		function mostrar_quartos_livres() {
+
+			let livres = "Quartos disponíveis:\n";
+
+			for (let i = 0; i < quartos.length; i++) {
+
+				if (quartos[i] === "L") {
+
+					// posição 0 = quarto 1
+					livres += (i + 1) + "\n";
+				}
+			}
+
+			alert(livres);
+		}
+
+
+		// ===============================
+		// MAPA DOS QUARTOS
+		// ===============================
+
+		function mostrar_mapa_quartos() {
+
+			let mapa = "";
+
+			for (let i = 0; i < quartos.length; i++) {
+
+				mapa += "Quarto " + (i + 1) + ": " + quartos[i] + "\n";
+
+				// Quebra a cada 5 quartos
+				if ((i + 1) % 5 === 0) {
+					mapa += "\n";
+				}
+			}
+
+			alert(
+				"MAPA DOS QUARTOS\n\n" +
+				"L = Livre | O = Ocupado\n\n" +
+				mapa
+			);
+		}
+
+
+
+		function validar_dados() {
+
+			var valorDiaria = Number(prompt("Informe o valor da diaria:"))
+
+			var qtt = Number(prompt("informe a quantidade de diárias: "))
+
+			if (valorDiaria <= 0) {
+				alert("Valores da diária invalido")
+				inicio();
+			}
+
+			if (qtt <= 1 || qtt > 30) {
+				alert("quantidade de diárias inválidas")
+				inicio();
+			}
+
+
+		}
+
+		var tipoQuarto;
+		function escolher_quartos() {
+
+			tipoQuarto = prompt(alert("Tipo de quarto (S/E/L):"))
+
+		}
+
+		var total;
+		var qtt;
+		var valorDiaria;
+		function calcular_valores() {
+
+
+
+			if (tipoQuarto == "S") {
+				subtotal = 1.00 * qtt * valorDiaria
+
+			}
+			else if (tipoQuarto == "E") {
+				subtotal = 1.35 * qtt * valorDiaria
+			}
+			else if (tipoQuarto == "L") {
+				subtotal = 1.65 * qtt * valorDiaria
+			}
+			else {
+				alert("Não possui esse tipo de reserva, escolha apenas S/E/L")
+				calcular_valores()
+			}
+
+			taxa_servico = subtotal * 0.10
+			total = taxa_servico + subtotal
+
+
+		}
+		function mostrar_resumo() {
+			console.log("Resumo:")
+			console.log("nome: " + nome)
+			console.log("quarto: " + quartoescolhido + " - " + tipoQuarto)
+			console.log("Subtotal: " + subtotal)
+			console.log("Taxa de serviço (10%): " + taxa_servico)
+			console.log("Total: " + total)
+
+
+		}
+		function confirmacao() {
+
+			let confirmacao = prompt(alert("Confirma essa reserva? "))
+
+			if (comfirmacao == "sim") {
+				quartos.push(quartoescolhido[i] == "O")
+				quartos.push("O")
+
+
+			}
+			else {
+				validar_quarto
+			}
+
+		}
+
+
 
 		function cadastro_hospedes() {
 			alert('HOTEL {NOME DO HOTEL} - CADASTRO DE HÓSPEDES');
@@ -95,9 +363,6 @@
 
 		}
 
-		function eventos() {
-
-		}
 
 		function ar_condicionado() {
 
