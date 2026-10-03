@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src="shared.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        var qttConvidados = Number(prompt("Digite o número de convidados: "));
+        var horas = Number(prompt("Quantidade de horas do evento:"));
+        var qttGarcon = Math.ceil(qttConvidados / 12) + Math.floor(horas / 2);
+        var custo = qttGarcon * horas * 10.50;
+
+        HotelTerabithia.atualizarEvento({
+            garcons: qttGarcon,
+            duracaoGarcons: horas,
+            custoGarcons: custo
+        });
+        alert("Quantidade de garçons: " + qttGarcon);
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

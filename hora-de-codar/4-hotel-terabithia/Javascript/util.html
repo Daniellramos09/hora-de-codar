@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+	<script src="shared.js"></script>
+
+<body>
+    <script>
+
+
+        function exibirRelatorioEvento() {
+            const evento = HotelTerabithia.lerEvento();
+            if (!evento || !evento.auditorio || !evento.dia || evento.hora === undefined
+                || evento.garcons === undefined || evento.custoGarcons === undefined
+                || evento.custoBuffet === undefined) {
+                alert("Relatório incompleto. Execute as páginas de Eventos, Garçons e Buffet primeiro.");
+                HotelTerabithia.voltarAoMenu();
+                return;
+            }
+
+            const empresa = prompt("Nome da empresa do evento:");
+            if (!empresa || !empresa.trim()) {
+                HotelTerabithia.voltarAoMenu();
+                return;
+            }
+            const data = evento.data || new Date().toLocaleDateString("pt-BR");
+            const horaInicio = evento.horaInicio ?? evento.hora;
+            const duracao = evento.duracao ?? evento.duracaoGarcons;
+            const convidados = evento.convidados ?? evento.convidadosBuffet;
+            const horaFim = Number(horaInicio) + Number(duracao);
+            const totalGeral = evento.custoGarcons + evento.custoBuffet;
+            const relatorio = `[Eventos]
+Auditório: ${evento.auditorio}${evento.cadeirasAdicionais ? ` (${evento.cadeirasAdicionais} cadeiras adicionais)` : ""}
+Empresa: ${empresa.trim()}
+Data: ${data}
+Dia: ${evento.dia}
+Horário: ${horaInicio}h às ${horaFim}h
+Convidados: ${convidados}
+Garçons: ${evento.garcons}
+Duração: ${duracao} horas
+Buffet: ${evento.litrosCafe} L de café, ${evento.litrosAgua} L de água, ${evento.quantidadeSalgados} salgados
+Custo garçons: ${HotelTerabithia.formatarMoeda(evento.custoGarcons)}
+Custo buffet: ${HotelTerabithia.formatarMoeda(evento.custoBuffet)}
+Total do evento: ${HotelTerabithia.formatarMoeda(totalGeral)}`;
+
+            alert(relatorio);
+            if (confirm("Confirma a reserva?")) {
+                HotelTerabithia.adicionarRegistro("eventos", {
+                    ...evento,
+                    empresa: empresa.trim(),
+                    data,
+                    horaInicio,
+                    horaFim,
+                    duracao,
+                    convidados,
+                    totalGeral
+                });
+                alert("Reserva efetuada com sucesso.");
+            } else {
+                alert("Reserva não efetuada.");
+            }
+
+            HotelTerabithia.limparEvento();
+            HotelTerabithia.voltarAoMenu();
+        }
+
+        exibirRelatorioEvento();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<html>
+
+<head>
+	<script src="shared.js"></script>
+
+    <script>
+
+        function inicio() {
+            const colorado = 350;
+            const laranja = 150;
+            const limiteLaranja = laranja + 70;
+            const convidados = Number(prompt("Digite o número de convidados:"));
+            let auditorio;
+            let cadeirasAdicionais = 0;
+
+            if (!Number.isFinite(convidados) || convidados <= 0 || convidados > colorado) {
+                alert("Número de convidados inválido.");
+                return;
+            }
+
+            if (convidados > laranja && convidados <= limiteLaranja) {
+                auditorio = "Laranja";
+                cadeirasAdicionais = convidados - laranja;
+                alert(`Auditório Laranja é o ideal. Cadeiras adicionais: ${cadeirasAdicionais}`);
+            } else if (convidados <= laranja) {
+                auditorio = "Laranja";
+                alert("Auditório Laranja é o mais adequado.");
+            } else {
+                auditorio = "Colorado";
+                alert("Auditório Colorado é o ideal.");
+            }
+
+            HotelTerabithia.limparEvento();
+            HotelTerabithia.atualizarEvento({ convidados, auditorio, cadeirasAdicionais });
+        }
+
+        inicio();
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

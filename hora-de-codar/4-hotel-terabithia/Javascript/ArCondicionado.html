@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src="shared.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        var decisao = (prompt("Cadastrar empresa? (S/N)") || "N").trim().toUpperCase();
+        var orcamentos = [];
+
+        while (decisao !== "N") {
+            var empresa = prompt("Nome da empresa: ");
+            var valorServico = Number(prompt("Informe o valor do serviço: "));
+            var quantidadeAparelhos = Number(prompt("Informe a quantidade de aparelhos em manutenção: "));
+            var porcentagemDesconto = Number(prompt("Informe o percentual de desconto: "));
+            var quantidadeMinima = Number(prompt("Quantidade mínima para desconto: "));
+
+            var valorBruto = valorServico * quantidadeAparelhos;
+            var valorTotal = valorBruto;
+            if (quantidadeAparelhos >= quantidadeMinima) {
+                valorTotal = valorBruto * (1 - porcentagemDesconto / 100);
+            }
+
+            var orcamento = { empresa: empresa, valorTotal: valorTotal };
+            orcamentos.push(orcamento);
+            HotelTerabithia.adicionarRegistro("orcamentos", orcamento);
+            alert(`O serviço de ${empresa} custará ${HotelTerabithia.formatarMoeda(valorTotal)}`);
+
+            decisao = (prompt("Deseja informar novos dados? (S/N)") || "N").trim().toUpperCase();
+        }
+
+        if (orcamentos.length > 0) {
+            const menorOrcamento = orcamentos.reduce((menor, atual) =>
+                atual.valorTotal < menor.valorTotal ? atual : menor
+            );
+            alert(`O orçamento de menor valor é o de ${menorOrcamento.empresa} por ${HotelTerabithia.formatarMoeda(menorOrcamento.valorTotal)}`);
+        }
+
+        HotelTerabithia.voltarAoMenu();
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

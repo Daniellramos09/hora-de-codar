@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios Operacionais</title>
+    <script src="shared.js"></script>
+</head>
+<body>
+    <script>
+        function exibirRelatorioOperacional() {
+            const estado = HotelTerabithia.lerEstado();
+            const quartosOcupados = estado.quartos.filter(status => status === "O").length;
+            const receitaHospedagem = estado.reservas.reduce((total, reserva) => total + reserva.total, 0);
+            const receitaEventos = estado.eventos.reduce((total, evento) => total + evento.totalGeral, 0);
+            const taxaOcupacao = (quartosOcupados / 20) * 100;
+            const totalGeral = receitaHospedagem + receitaEventos;
+
+            alert(`RELATÓRIO OPERACIONAL
+Reservas confirmadas: ${estado.reservas.length}
+Ocupação atual: ${quartosOcupados}/20 (${taxaOcupacao.toFixed(1)}%)
+Hóspedes cadastrados: ${estado.hospedes.length}
+Eventos confirmados: ${estado.eventos.length}
+
+Receita de hospedagem: ${HotelTerabithia.formatarMoeda(receitaHospedagem)}
+Receita de eventos: ${HotelTerabithia.formatarMoeda(receitaEventos)}
+Receita total: ${HotelTerabithia.formatarMoeda(totalGeral)}`);
+        }
+
+        exibirRelatorioOperacional();
+    </script>
+</body>
+</html>

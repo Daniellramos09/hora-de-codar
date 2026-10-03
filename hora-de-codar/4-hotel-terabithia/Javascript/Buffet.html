@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src="shared.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /*Consumo por convidado:
+
+   - Café: 0,2 L
+   - Água: 0,5 L
+   - Salgados: 7 un
+
+   Custos unitários:
+
+   - Café: R$ 0,80/L
+   - Água: R$ 0,40/L
+   - Salgados: R$ 34,00 por cento*/
+
+        var numConvidados = Number(prompt("Número de convidados: "));
+        var cafePorPessoa = 0.2;
+        var aguaPorPessoa = 0.5;
+        var salgadosPorPessoa = 7;
+        var custoCafePorLitro = 0.80;
+        var custoAguaPorLitro = 0.40;
+        var custoPorCentoSalgados = 34;
+
+        var litrosCafe = numConvidados * cafePorPessoa;
+        var litrosAgua = numConvidados * aguaPorPessoa;
+        var quantidadeSalgados = numConvidados * salgadosPorPessoa;
+        var valorTotalCafe = litrosCafe * custoCafePorLitro;
+        var valorTotalAgua = litrosAgua * custoAguaPorLitro;
+        var valorTotalSalgados = (quantidadeSalgados / 100) * custoPorCentoSalgados;
+        var total = valorTotalAgua + valorTotalCafe + valorTotalSalgados;
+
+        HotelTerabithia.atualizarEvento({
+            convidadosBuffet: numConvidados,
+            litrosCafe,
+            litrosAgua,
+            quantidadeSalgados,
+            custoBuffet: total
+        });
+        alert(total);
+
+        
+
+
+
+    </script>
+</body>
+
+</html>

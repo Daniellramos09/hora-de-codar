@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src="shared.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const tanque = 42;
+
+        var waynerGasolina = Number(prompt("Informa o valor da gasolina do primeiro posto: "));
+        var waynerAlcool = Number(prompt("Informa o valor do álcool do primeiro posto: "));
+        var StarkGasolina = Number(prompt("Informa o valor da gasolina do segundo posto: "));
+        var StarkAlcool = Number(prompt("Informa o valor do álcool do segundo posto: "));
+
+        alert("Gasolina na Wayne: " + tanque * waynerGasolina + "\n"
+            + "Álcool na Wayne: " + tanque * waynerAlcool + "\n"
+            + "Gasolina na Stark: " + tanque * StarkGasolina + "\n"
+            + "Álcool na Stark: " + tanque * StarkAlcool + "\n");
+
+        if (waynerAlcool <= waynerGasolina * 0.70) {
+            alert("Álcool do Posto Wayne é o ideal");
+        } else {
+            alert("Gasolina do Posto Wayne é o ideal");
+        }
+
+        if (StarkAlcool <= StarkGasolina * 0.70) {
+            alert("Álcool do Posto Stark é o ideal");
+        } else {
+            alert("Gasolina do Posto Stark é o ideal");
+        }
+
+        const wayneUsaAlcool = waynerAlcool <= waynerGasolina * 0.70;
+        const starkUsaAlcool = StarkAlcool <= StarkGasolina * 0.70;
+        const opcoes = [
+            {
+                posto: "Wayne Oil",
+                combustivel: wayneUsaAlcool ? "Álcool" : "Gasolina",
+                custo: tanque * (wayneUsaAlcool ? waynerAlcool : waynerGasolina)
+            },
+            {
+                posto: "Stark Petrol",
+                combustivel: starkUsaAlcool ? "Álcool" : "Gasolina",
+                custo: tanque * (starkUsaAlcool ? StarkAlcool : StarkGasolina)
+            }
+        ];
+        const ranking = [...opcoes].sort((a, b) => a.custo - b.custo);
+        const resultado = ranking.map((opcao, posicao) =>
+            `${posicao + 1}. ${opcao.posto} - ${opcao.combustivel} - ${HotelTerabithia.formatarMoeda(opcao.custo)}`
+        ).join("\n");
+
+        const estado = HotelTerabithia.lerEstado();
+        estado.abastecimentos.push(...ranking);
+        HotelTerabithia.salvarEstado(estado);
+        alert(resultado);
+        HotelTerabithia.voltarAoMenu();
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

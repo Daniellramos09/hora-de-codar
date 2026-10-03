@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="shared.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var diaSemana = ["segunda", "terca", "quarta", "quinta", "sexta"];
+        var fimSemana = ["sabado", "domingo"];
+        var dia = prompt("Digite o dia da semana para alugar o auditório: ");
+        var hora = Number(prompt("Digite a hora da semana"));
+        var disponivel = false;
+
+        for (var i = 0; i < diaSemana.length; i++) {
+            if (dia === diaSemana[i]) {
+                disponivel = hora >= 7 && hora <= 23;
+                alert(disponivel ? "Disponível para aluguel" : "Indisponível para aluguel");
+            }
+        }
+
+        for (var j = 0; j < fimSemana.length; j++) {
+            if (dia === fimSemana[j]) {
+                disponivel = hora >= 7 && hora <= 15;
+                alert(disponivel ? "Disponível para aluguel" : "Indisponível para aluguel.");
+            }
+        }
+
+        HotelTerabithia.atualizarEvento({ dia, hora, auditorioDisponivel: disponivel });
+
+
+    </script>
+</body>
+</html>

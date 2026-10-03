@@ -1,69 +1,219 @@
 <html>
 
-	<head>
-		<script>
-			// O código é todo modulado por funções para permitir uma organização melhor. 
-		
-			// Uma lista de exemplo que podemos usar sem ter que informar usuários sempre.
-			//var lista_hospedes = ["Gabriel Augusto", "Roberto Gómez Bolaños", "María Antonieta de las Nieves", "Hector Bonilha", "Carlos Villagrán", "Ramón Valdés"]; 
-			
-			var lista_hospedes = [];
-			
-			function sistema_cadastrar_hospedes() {
+<head>
+	<script src="shared.js"></script>
+	<script>
+		// O código é todo modulado por funções para permitir uma organização melhor. 
 
-				var escolha_hospedes = parseInt(prompt('Cadastro de Hóspedes\n\n Selecione uma opção: \n1. Cadastrar \n2. Pesquisar \n3. Sair'));
+		// Uma lista de exemplo que podemos usar sem ter que informar usuários sempre.
+		//var lista_hospedes = ["Gabriel Augusto", "Roberto Gómez Bolaños", "María Antonieta de las Nieves", "Hector Bonilha", "Carlos Villagrán", "Ramón Valdés"]; 
 
-				if (escolha_hospedes === 1) {
-					cadastrar_hospedes();
-				} else if (escolha_hospedes === 2) {
-					pesquisar_hospedes();
-				} else if (escolha_hospedes === 3) {
-					//inicio();
-				} else {
-					erro_pesquisar_hospedes();
+		let lista_hospedes = HotelTerabithia.lerEstado().hospedes;
+
+		function sistema_cadastrar_hospedes() {
+
+			var escolha_hospedes = Number(prompt('Cadastro de Hóspedes\n\n Selecione uma opção: \n1. Cadastrar \n2. Pesquisar por nome exato \n3. Pesquisar por prefixo \n4. Listar ordenado (A-Z) \n5. Atualizar cadastro \n6. Remover cadastro \n7. Voltar ao hotel'));
+
+			if (escolha_hospedes === 1) {
+				cadastrar_hospedes();
+			} else if (escolha_hospedes === 2) {
+				pesquisar_hospedes_exato();
+			} else if (escolha_hospedes === 3) {
+				pesquisar_por_prefixo();
+			}
+			else if (escolha_hospedes === 4) {
+				listar_ordenado();
+			}
+			else if (escolha_hospedes === 5) {
+				atualizar_cadastro();
+			}
+			else if (escolha_hospedes == 6) {
+				remover_cadastro();
+			}
+			else if (escolha_hospedes === 7) {
+				HotelTerabithia.voltarAoMenu();
+			}
+			else {
+				erro_pesquisar_hospedes();
+			}
+		}
+
+
+		var sum = lista_hospedes.reduce((proximo, hospede) => Math.max(proximo, hospede.indice + 1), 0);
+
+		function cadastrar_hospedes() {
+			// lenght é uma propriedade que retorna a quantidade de itens dentro do array. 
+			if (lista_hospedes.length >= 15) {
+				alert("Numero máximo de hóspedes cadastrados.");
+			} else {
+				var nome_hospede = prompt('Por favor, informe o nome da(o) hóspede:');
+				if (nome_hospede === null || !nome_hospede.trim()) {
+					alert("Informe um nome válido.");
+					sistema_cadastrar_hospedes();
+					return;
 				}
-			}
-			
-			function cadastrar_hospedes() {
-				// lenght é uma propriedade que retorna a quantidade de itens dentro do array. 
-				if (lista_hospedes.length >= 15){
-					alert("Numero máximo de hóspedes cadastrados.");
-				} else {	
-					var nome_hospede = prompt('Por favor, informe o nome da(o) hóspede:');
-					
-					// O método push() permite adicionar um item ao Array/Vetor. Importante dizer que ele adiciona o elemento ao final do Array/Vetor. 
-					lista_hospedes.push(nome_hospede);
-					console.log(lista_hospedes); // O console é usado apenas para exibir ao desenvolvedor todo mundo que já está cadastrado.
-					alert("Sucesso! Hóspede " + nome_hospede + " foi cadastrada(o) com sucesso!\n");
+				nome_hospede = nome_hospede.trim();
+
+				var nomeExiste = false;
+
+				for (let i = 0; i < lista_hospedes.length; i++) {
+					if (lista_hospedes[i].nome === nome_hospede) {
+						nomeExiste = true;
+						break;
+					}
 				}
-				
-				sistema_cadastrar_hospedes();
-			}
-			
-			function pesquisar_hospedes() {
-				var nome_hospede = prompt('Por favor, informe o nome da(o) hóspede para pesquisa:');
-				// O método includes() procura por um elemento dentro do Array e retorna verdadeiro ou falso. Caso queira comparar números, o mais indicado é o método find();
-				if (lista_hospedes.includes(nome_hospede)){
-					alert(nome_hospede + ' encontrada(o).')
-				} else {
-					alert(nome_hospede + ' não foi encontrada(o).')
+
+				if (nomeExiste) {
+					alert("Nome já existente, digite mais um sobrenome")
 				}
-				
-				sistema_cadastrar_hospedes() 
+				else {
+
+					lista_hospedes.push({
+						indice: sum++,
+						nome: nome_hospede,
+						dataHora: new Date()
+					});
+					const estado = HotelTerabithia.lerEstado();
+					estado.hospedes = lista_hospedes;
+					HotelTerabithia.salvarEstado(estado);
+
+					alert("Hospede cadastrado com sucesso!")
+				}
+
+
+
+
 			}
-			
-			function erro_pesquisar_hospedes(){
-				alert('Por favor, informe um número entre 1 e 3');
-				sistema_cadastrar_hospedes();
-			}
-			
+
 			sistema_cadastrar_hospedes();
-		
-		</script>
-	</head>
+		}
 
-	<body>
+		function pesquisar_hospedes_exato() {
+			var nome_hospede = prompt('Por favor, informe o nome da(o) hóspede para pesquisa:');
+			// O método includes() procura por um elemento dentro do Array e retorna verdadeiro ou falso. Caso queira comparar números, o mais indicado é o método find();
+			const hospedeEncontrado = lista_hospedes.find(
+				hospede => hospede.nome === nome_hospede
+			);
 
-	</body>
+			if (hospedeEncontrado) {
+				alert(`${hospedeEncontrado.nome} encontrado(a).`);
+			} else {
+				alert(`${nome_hospede} não foi encontrado(a).`);
+			}
+			sistema_cadastrar_hospedes()
+		}
+
+		var lista_prefixo = [];
+
+		function pesquisar_por_prefixo() {
+
+			var nome_prefixo = prompt("Digite o prefixo: ")
+			const prefixo = (nome_prefixo || "").trim().slice(0, 3);
+
+			if (!prefixo) {
+				alert("Digite um prefixo")
+				sistema_cadastrar_hospedes();
+				return;
+			}
+
+			const encontrados = lista_hospedes.filter(hospede =>
+				hospede.nome.toLowerCase().startsWith(prefixo.toLocaleLowerCase())
+			)
+
+			if (encontrados.length === 0) {
+				alert("Não existem hóspedes com esse prefixo.");
+			} else {
+				const resultado = encontrados.map(hospede =>
+					`${hospede.indice + 1} - ${hospede.nome} - ${hospede.dataHora.toLocaleString("pt-BR")}`
+				).join("\n");
+
+				alert(resultado)
+
+			}
+
+			sistema_cadastrar_hospedes();
+
+
+
+
+
+		}
+
+
+
+
+
+
+		function listar_ordenado() {
+
+			const ordenados = [...lista_hospedes].sort((a, b) =>
+				a.nome.localeCompare(b.nome, "pt-BR", { sensitivity: "base" })
+			);
+
+
+
+			const resultado = ordenados.map(hospede =>
+				`${hospede.indice + 1} - ${hospede.nome} - ${hospede.dataHora.toLocaleString("pt-BR")}`
+			).join("\n");
+
+			alert(resultado || "Nenhum hóspede cadastrado.");
+
+			sistema_cadastrar_hospedes();
+
+		}
+
+		function atualizar_cadastro() {
+			const indice = Number(prompt("Qual índice quer atualizar?"));
+			let encontrado = false;
+
+			for (let i = 0; i < lista_hospedes.length; i++) {
+				if (indice === lista_hospedes[i].indice + 1) {
+					const nomeAlterado = prompt("Digite o novo nome:");
+
+					if (nomeAlterado !== null) {
+						lista_hospedes[i].nome = nomeAlterado;
+						const estado = HotelTerabithia.lerEstado();
+						estado.hospedes = lista_hospedes;
+						HotelTerabithia.salvarEstado(estado);
+						alert(`Nome atualizado para ${lista_hospedes[i].nome}`);
+					}
+
+					encontrado = true;
+					break;
+				}
+			}
+
+			if (!encontrado) {
+				alert("Índice não encontrado.");
+			}
+
+			sistema_cadastrar_hospedes();
+		}
+
+		function remover_cadastro() {
+
+		}
+
+		function sair() {
+			HotelTerabithia.voltarAoMenu();
+		}
+
+		function erro_pesquisar_hospedes() {
+			alert('Por favor, informe um número entre 1 e 7');
+			sistema_cadastrar_hospedes();
+		}
+
+
+
+		sistema_cadastrar_hospedes();
+
+
+
+	</script>
+</head>
+
+<body>
+
+</body>
 
 </html>
