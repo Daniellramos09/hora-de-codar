@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BichinhoVirtual</title>
+
+ 
+
     <script>
+
+        const prompt = require('prompt-sync')();
 
         // Classe Principal (normalmente em um arquivo externo)
         class BichinhoVirtual {
@@ -13,6 +18,8 @@
                 this.nome = nome;
                 this.nivelDeFome = 50;
                 this.nivelFelicidade = 50;
+                this.idade = 5;
+                this.cansaco = 50;
             }
 
             alimentar() {
@@ -29,15 +36,44 @@
                 console.log(`Status atual de ${this.nome}:`);
                 console.log(`Nível de fome: ${this.nivelDeFome}`);
                 console.log(`Nível de felicidade: ${this.nivelFelicidade}`);
+                console.log(`Nível de cansaço: ${this.nivelCansaco}`);
             }
 
             passarTempo() {
-                this.nivelDeFome += 5;
+                this.nivelDeFome += 3;
+                this.nivelFelicidade += 3;
+                this.cansaco += 10;
+                this.idade += 1;
+
                 console.log(`${this.nome} está ficando mais faminto com o passar do tempo.`);
+
+                if(this.nivelDeFome >= 100){
+                    console.log(`${this.nome} Você perdeu. A fome do cachorro atingiu 100 pontos.`)
+                }   
             }
+
+            Cansaco() {
+                this.nivelCansaco += 10;
+                console.log(`${this.nome} brincou e ficou mais cansado.`);
+
+                if(this.nivelDeFome >= 100){
+                    console.log(`${this.nome} Você perdeu. O cansaso do cachorro atingiu 100 pontos.`)
+                }   
+            }
+
+            descansar(){
+                this.cansaco -= 10;
+                console.log(`${this.nome} descansou e recupeou sua energia.`)
+            }
+
+
+
+
         }
     </script>
     <script>
+
+
 
         // Programa Principal
         console.log("Bem-vindo ao Simulador de Animal de Estimação Virtual!");
